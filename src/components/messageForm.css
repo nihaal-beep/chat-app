@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Sono&display=swap');
+
+input{
+    background-color:#E7EAEF;
+    color:black; 
+    border: none;
+    width: 80%;
+    font-size:18px;
+    font-family: "Sono",sans-serif;
+}
+form{
+    display: flex;
+    margin:0.2em;
+    
+    justify-content: space-between;
+}
+form button{
+    margin:0;
+    width: 19%;
+    padding-left:6%;
+}

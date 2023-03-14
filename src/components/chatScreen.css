@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sono&display=swap');
+
+.window{
+    overflow: scroll;
+    height: 78% ;
+    display:flex;
+    flex-direction: column-reverse;
+    font-family: "Sono",sans-serif;
+}
+
+.header{
+    display: flex;
+    padding: 0.5em;
+    border-bottom: 1px solid #217074;;
+    padding-bottom: 0;
+    justify-content: space-around;
+}
+
+.header img{
+    width: 3em;
+    height:3em;
+    border-radius: 50%;
+}
+
+.header p{
+    margin-left:1em;
+    font-family: 'Lilita One', cursive;
+    font-size: 18px;
+    color:#217074;
+}
+
+.header button{
+    margin:0;
+    width: 3em;
+    height:3em;
+    border-radius: 50%;
+    font-size: 14px;
+    padding: 0;
+    padding-top: 1.8%;
+}
