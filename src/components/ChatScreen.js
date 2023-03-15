@@ -1,34 +1,44 @@
 
 import {signOut } from "firebase/auth"
-import {getDocs,collection,query,orderBy,limit} from "firebase/firestore";
-import { useState, useEffect,useRef } from "react";
+import {collection,query,orderBy,limit} from "firebase/firestore";
+import { useRef } from "react";
 import MessageChat from './MessageChat';
 import MessageForm from './MessageForm';
 import "./chatScreen.css"
 
+import 'firebase/firestore';
+import {useCollectionData} from "react-firebase-hooks/firestore"
+
 function ChatScreen(props)
 {   
     console.log("function")
-    const [messagesList,setMessagesList] = useState()
+    
     const messagesRef = collection(props.db,"messages")
     const dummy = useRef()
-    async function getMessages(){ 
-      try{
-        const data2 = query(messagesRef,orderBy("createdAt" , "desc"),limit(25))
-        //const data = await get(q)
-        const data = await getDocs(data2)
-        console.log(data2)
-        const filtered_data = data.docs.map((doc)=>({...doc.data(),id:doc.id}))
-        setMessagesList(filtered_data)
+    const querySnapshot = query(messagesRef,orderBy("createdAt","desc"),limit(25))
+    const [messagesList] = useCollectionData(querySnapshot,{idField:"id"})
+    //const [messagesList,setMessagesList] = useState()
+    
+    /*async function getMessages(){ 
+      try {
+        const querySnapshot = await getDocs(query(messagesRef, orderBy("createdAt", "desc"), limit(25)));
+        const data = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        if (JSON.stringify(data) !== JSON.stringify(messagesList)) {
+          setMessagesList(data);
+          console.log("if true")
+        }
+        
+      } catch (err) {
+        console.log(err);
       }
-      catch(err){
-        console.log(err)
-      }}
+    }
     useEffect( ()=>{
-      
-      
+
     getMessages()   
-  },[])
+  },[])*/
+ 
+ 
+  
     return(
         <div className='screen'>
           <div className="header">
@@ -42,7 +52,7 @@ function ChatScreen(props)
                 
             </div>
             
-            <MessageForm auth={props.auth} msgRef={messagesRef} getMessages={getMessages} dummy={dummy}/>
+            <MessageForm auth={props.auth} msgRef={messagesRef} /*getMessages={getMessages}*/ dummy={dummy}/>
             
         </div>
     )

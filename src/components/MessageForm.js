@@ -17,7 +17,7 @@ function MessageForm(props)
             photoURL
         })
         setFormVal("")
-        props.getMessages();
+        
         props.dummy.current.scrollIntoView({behaviour : "smooth"})
     }
     return(
